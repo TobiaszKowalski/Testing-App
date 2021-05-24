@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Test App</title>
+</head>
+<body>
+    <main class="app">
+        <section class="question">
+            <div class="btn-wrapper">
+                <button class="add-question" onclick='showQuestionBlock()'>Добавить вопрос</button>
+                <button class="start-test" onclick='showTest()'>Начать тест</button>
+            </div>
+            <div class="popup-question popup">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        <div class="question-block">
+                            <p>Введите текст вопроса:</p>
+                            <input type="text" id="question">
+                            <div class="btn-container">
+                                <button class="ok-btn" onclick='isQuestionValid()'>Ok</button>
+                                <button class="cancel-btn" onclick='cancelQuestionBlock()'>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="empty-question-input popup">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        <div class="question-block">
+                            <p>Вы не ввели текст вопроса. Попробуйте <br> добавить вопрос заново</p>
+                            <div class="btn-container">
+                                <button class="ok-btn" onclick='returnToStart()'>Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-answer popup">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        <div class="answer-block">
+                            <p class="enterAnswer"></p>
+                            <input type="text" id="answer">
+                            <div class="btn-container">
+                                <button class="ok-btn" onclick="isAnswerInputValid()">Ok</button>
+                                <button class="cancel-btn" onclick='cancelAnswerBlock()'>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="empty-answer-input popup">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        <div class="question-block">
+                            <p class="alert"></p>
+                            <div class="btn-container">
+                                <button class="ok-btn" onclick='returnToStart()'>Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-answer-quantity popup">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        <div class="answer-quantity-block">
+                            <p class="enterAnswer">Введите номера правильных ответов<br> через запятую. Нумерация начинается с 1:</p>
+                            <input type="text" id="quantity">
+                            <div class="btn-container">
+                                <button class="ok-btn" onclick="isAnswerQuantityInputValid()">Ok</button>
+                                <button class="cancel-btn" onclick='cancelAnswerQuantityBlock()'>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="empty-answer-quantity popup">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        <div class="question-block">
+                            <p>Вы не ввели правильные варианты ответов.<br> Попробуйте добавить вопрос заново.</p>
+                            <div class="btn-container">
+                                <button class="ok-btn" onclick='returnToStart()'>Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="unvalid-answer-quantity popup">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        <div class="question-block">
+                            <p>Поле может содержать только уникальные<br> цифры 1, 2, 3, 4, разделенные запятой.<br> Попробуйте добавить вопрос
+                                заново.</p>
+                            <div class="btn-container">
+                                <button class="ok-btn" onclick='returnToStart()'>Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="test">
+            <div class="test-content hidden">
+                <ol class="test-list">
+                    <li>
+                        <label id="1">Что из перечисленного не является языком программирования?</label>
+                        <div class="variants">
+                            <div>
+                                <input type="checkbox" id="1" value="1">
+                                <label>HTML</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="2" value="1">
+                                <label>Java</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="3" value="1">
+                                <label>Python</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="4" value="1">
+                                <label>DevOps</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <label id="2">Какие из перечисленных видов тестирования могут быть автоматизированы?</label>
+                        <div class="variants">
+                            <div>
+                                <input type="checkbox" id="1" value="2">
+                                <label>UI тестирование</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="2" value="2">
+                                <label>Юзабилити тестирование</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="3" value="2">
+                                <label>Тестирование совместимости</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="4" value="2">
+                                <label>Unit тестирование</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <label id="3">Выберите вариант ответа, который соответствует следующему предложению: "Известно, что<br> грымзик обязательно или полосат, или рогат, или то и другое вместе"</label>
+                        <div class="variants">
+                            <div>
+                                <input type="checkbox" id="1" value="3">
+                                <label>Грымзик не может быть безрогим</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="2" value="3">
+                                <label>Грымзик не может быть однотонным и безрогим одновременно</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="3" value="3">
+                                <label>Грымзик не может быть полосатым и безрогим одновременно</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="4" value="3">
+                                <label>Грымзик не может быть однотонным и рогатым одновременно</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <label id="4">Выберите типы алгоритмов, которых не существует</label>
+                        <div class="variants">
+                            <div class="">
+                                <input type="checkbox" id="1" value="4">
+                                <label>Алгоритм с ветвлением</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="2" value="4">
+                                <label>Циклический безусловный</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="3" value="4">
+                                <label>Циклический с параметром</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="4" value="4">
+                                <label>Алгоритм с углублением</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <label id="5">Какая (какие) из следующих конструкций используется (используются) для ветвления?</label>
+                        <div class="variants">
+                            <div>
+                                <input type="checkbox" id="1" value="5">
+                                <label>switch case</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="2" value="5">
+                                <label>if else</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="3" value="5">
+                                <label>do while</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="4" value="5">
+                                <label>for</label>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+                <button class="btn-send" onclick='evaluation()'>Отправить</button>
+            </div>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>
